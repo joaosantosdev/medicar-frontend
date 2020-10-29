@@ -1,0 +1,45 @@
+<div>
+
+    <div id="container-main" class="container-main">
+      <div id="sidebar">
+
+
+
+
+        <div class="items-sidebar">
+           <a *ngFor="let item of itemsSidebar" class='cl-default a item-sidebar outline-none link-navigation' routerLinkActive="active-primary" routerLink="{{item.navigation}}">
+
+
+                <!--icon size="25px" name="{{item.icon}}" routerLinkActive="active-primary" class="fill-default"></icon!-->
+
+              <div class="item-sidebar-title">{{item.title}}</div>
+
+            </a>
+        </div>
+      </div>
+
+      <div id="content-dashboard-black" class="toggle-sidebar">
+
+      </div>
+      <div class="container-dashboard " id="container-dashboard">
+        <div class="navbar bg-primary-dark" style="position: fixed;">
+            <div class="c-pointer  toggle-sidebar toggle-mobile">
+              <i class="fas fa-bars fill-whit cl-white" style="font-size: 30px"></i>
+            </div>
+        </div>
+        <div class="content-dashboard ">
+
+
+
+
+          <router-outlet></router-outlet>
+
+
+
+
+          </div>
+
+      </div>
+    </div>
+  </div>
+

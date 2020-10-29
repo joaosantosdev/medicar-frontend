@@ -24,9 +24,21 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "src/assets/css/bootstrap.css",
+              "src/assets/css/lib.css",
+              "node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss",
+              "node_modules/@fortawesome/fontawesome-free/scss/solid.scss",
+              "node_modules/@fortawesome/fontawesome-free/scss/regular.scss",
+              "node_modules/@fortawesome/fontawesome-free/scss/brands.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/js/jquery.js",
+              "src/assets/js/sidebar.js",
+              "src/assets/js/popover.js",
+
+              "src/assets/js/bootstrap.js"
+            ]
           },
           "configurations": {
             "production": {

@@ -1,0 +1,75 @@
+<div class="row">
+  <div class="col-md-8 mt-1">
+    <input placeholder="" [(ngModel)]="paginator.search"  class="input">
+  </div>
+  <div class="col-md-2 mt-1">
+    <button class="button primary btn-block" (click)="pesquisar()">Pesquisar</button>
+  </div>
+  <div class="col-md-2 mt-1">
+    <button class="button primary btn-block" routerLink="/gestor/medico/novo">Novo</button>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <table class="table">
+      <thead>
+      <th class="cl-default">ID</th>
+      <th class="cl-default">Nome</th>
+      <th class="cl-default">E-Mail</th>
+      <th class="cl-default">CPF</th>
+      <th class="cl-default">Telefone</th>
+      <th class="cl-default">Opções</th>
+
+      </thead>
+      <tbody>
+
+      <tr *ngFor="let medico of medicos">
+        <td data-label="ID" class="cl-default">{{medico.id}}</td>
+        <td data-label="Nome"  class="cl-default">{{medico.nome}}</td>
+        <td data-label="E-Mail"  class="cl-default">{{medico.email}}</td>
+        <td data-label="CPF"  class="cl-default">{{medico.cpf}}</td>
+
+        <td data-label="Telefone"  class="cl-default">{{medico.telefone}}</td>
+
+        <td data-label="Opções"  class="cl-default">
+          <div class="row">
+            <div class="col-md-2 col-2">
+              <i class="fas fa-user-edit c-pointer" [routerLink]="'/gestor/medico/editar/'+medico.id"></i>
+            </div>
+            <div class="col-md-2 col-2">
+              <i class="fas fa-trash-alt c-pointer" (click)="openDelete(medico)"></i>
+            </div>
+            <div class="col-md-2 col-2">
+              <i class="fas fa-notes-medical c-pointer" [routerLink]="'/gestor/medico/horarios/'+medico.id"></i>
+            </div>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<pagination [paginator]="paginator"  (change)="changePage($event)"></pagination>
+
+<modal-dialog classStyle="confirm" [control]="dlExcluir" title="Atencao" name="clienteDelete">
+  <div class="row" style="margin-bottom: 0px!important;">
+    <div class="col-md-12 mb-2">
+      <p>Deseja realmente excluir essse médico ?</p>
+    </div>
+
+  </div>
+  <div class="row" style="margin-bottom: 0px!important;">
+    <div class="col-md-12">
+      <button (click)="deleteMedico()"  class="button success">Sim</button>
+      <button (click)="closeDelete()" class="button danger ml-2" >Não</button>
+    </div>
+  </div>
+</modal-dialog>
+
+<modal-dialog alert="true" [control]="dlExluido" title="Sucesso" name="clienteSucess">
+  <div class="row" style="margin-bottom: 0px!important;">
+    <div class="col-md-12">
+      <p>{{mensagemExluir}}</p>
+    </div>
+  </div>
+</modal-dialog>

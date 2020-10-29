@@ -1,0 +1,67 @@
+<div class="content-main">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <h1 class="cl-default-dark">Horário médico</h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <button (click)="salvar()" class="button primary">Salvar</button>
+      </div>
+    </div>
+    <div class="row" [formGroup]="control" *ngFor="let control of horarios.controls;let i = index">
+      <div class="col-md-3">
+          <input-content [error]="isError(control,'horarioInicial')"  label="Horário inicial">
+            <input type="time" (change)="validarHorario(control,i)" formControlName="horarioInicial"  name="horarioInicial"  class="input">
+          </input-content>
+      </div>
+      <div class="col-md-3">
+        <input-content [error]="isError(control,'horarioFinal')" label="Horário final">
+          <input type="time" (change)="validarHorario(control,i)" formControlName="horarioFinal" name="horarioFinal" class="input">
+        </input-content>
+      </div>
+      <div class="col-md-3">
+        <input-content [error]="isError(control,'diaSemana')" label="Dia da semana">
+          <div class="group right ">
+            <input [value]="getValuediaSemana(control)" name="diaSemana"   class="input disabled" disabled>
+            <div (click)="indexSelected = i;controlSelected= control"  data-dialog="#dldiaSemana"  class="toggle-dialog input-text c-pointer">
+              <i class="fas fa-calendar-week"></i>
+            </div>
+          </div>
+        </input-content>
+      </div>
+      <div class="col-md-2 mt-op" >
+        <button *ngIf="i+1 === horarios.length" class="button primary mr-3 btnOp" (click)="createHorario()">
+          <i class="fas fa-plus"></i>
+        </button>
+        <button *ngIf="horarios.length > 1" class="button danger btnOp "  (click)="removerHorario(i)" >
+          <i class="fas fa-trash-alt"></i>
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<modal-dialog [control]="dlDiaCtrl" name="dldiaSemana" title="Dia da semana">
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table">
+        <tbody>
+        <tr (click)="selectedDia(item)"  *ngFor="let item of listaDiaSemana" class="c-pointer">
+          <td  class="cl-default">{{item.descricao}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</modal-dialog>
+
+<modal-dialog title="Médico" alert="true" [control]="dlAlerCtrl" name="alertSave">
+  <div class="row">
+    <div class="col-md-12">
+      {{message}}
+    </div>
+  </div>
+</modal-dialog>

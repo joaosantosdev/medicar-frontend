@@ -1,0 +1,80 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="content-main">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <h1 class="cl-default-dark">{{title}}</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 mb-2">
+          <input-content [error]="isError('nome')"  label="Nome">
+            <input  name="nome" formControlName="nome" class="input">
+          </input-content>
+        </div>
+        <div class="col-md-4 mb-2">
+          <input-content  [error]="isError('email')"   label="Email">
+            <input name="email" formControlName="email"  class="input">
+          </input-content>
+        </div>
+        <div class="col-md-4 mb-2">
+          <input-content   label="Telefone" opcional="true">
+            <input formControlName="telefone" name="telefone"  class="input" />
+          </input-content>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4 mb-2">
+          <input-content  [error]="isError('cpf')" label="CPF">
+            <input  formControlName="cpf" name="cpf" class="input">
+          </input-content>
+        </div>
+        <div class="col-md-4 mb-2">
+          <input-content [error]="isError('senha')"  label="Senha">
+            <input name="senha"  formControlName="senha" type="password" class="input">
+          </input-content>
+        </div>
+        <div class="col-md-4 mb-2">
+          <input-content  [error]="isError('r_senha')"  label="Repetir senha">
+            <input name="r_senha"  formControlName="r_senha"  type="password" class="input">
+          </input-content>
+        </div>
+
+      </div>
+      <div class="row">
+      <div class="col-md-4 mb-2">
+        <input-content    label="Status">
+          <div class="group right ">
+            <input name="status" [value]="status.descricao"  class="input disabled" disabled>
+            <div  data-dialog="#status"  class="toggle-dialog input-text c-pointer">
+              <i class="fas fa-toggle-on"></i>
+            </div>
+          </div>
+        </input-content>
+      </div>
+    </div>
+
+
+      <div class="row">
+        <div class="col-md-3">
+          <button type="submit" class="button  btn-block primary">Salvar</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+</form>
+
+<status-dialog  (onSelected)="onStatus($event)"></status-dialog>
+
+
+<modal-dialog title="Médico" alert="true" [control]="dlAlerCtrl" name="alertSave">
+  <div class="row">
+    <div class="col-md-12">
+      {{message}}
+    </div>
+  </div>
+</modal-dialog>

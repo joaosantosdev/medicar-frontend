@@ -1,0 +1,14 @@
+
+<modal-dialog [control]="dlStatusCtrl" title="Status" name="status">
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table">
+        <tbody>
+        <tr (click)="selected(item)"  *ngFor="let item of listaStatus" class="c-pointer">
+          <td  class="cl-default">{{item.descricao}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</modal-dialog>
